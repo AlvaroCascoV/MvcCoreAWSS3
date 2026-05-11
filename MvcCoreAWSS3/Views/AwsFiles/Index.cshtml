@@ -1,0 +1,23 @@
+﻿@model List<string>
+
+<h1>AWS Files S3</h1>
+
+<p>
+    <a asp-controller="AwsFiles" asp-action="Upload" class="btn btn-primary">Upload File</a>
+</p>
+
+<h2 style="color:red">@ViewData["MENSAJE"]</h2>
+
+@if (Model != null)
+{
+    @foreach (string fileName in Model)
+    {
+        <div class="card" style="width: 18rem;">
+            <img src="https://bucket-core-acv.s3.us-east-1.amazonaws.com/@fileName" class="card-img-top" alt="@fileName">
+            <div class="card-body">
+                <h5 class="card-title">@fileName</h5>
+                <a asp-controller="AwsFiles" asp-action="DeleteFile" asp-route-filename="@fileName" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    }
+}
